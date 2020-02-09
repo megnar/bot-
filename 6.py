@@ -1,7 +1,13 @@
 import telebot;
 import sqlite3;
+
+
+
+import random
+import os
+#send_random_picture
 from telebot import apihelper
-PROXY = 'socks5://54.38.195.161:53047'
+PROXY = 'socks5://51.77.56.170:1080'
 apihelper.proxy = {'https': PROXY}
 bot = telebot.TeleBot('854681764:AAFJQ3_DPmvOc_kioH9tRiZ-LUwagABKzho');
 def drop():
@@ -69,9 +75,19 @@ def get_text_messages(message):
                                                 /love""")
 
     elif message.text == "чисто подрунькать":
-        bot.send_message(message.from_user.id, "сорян в доработке")
+        #bot.send_photo(message.from_user.id, open(r'C:\Users\Megnar\image\cTgcVxfa8aY.jpg', 'rb'));
+        all_files_in_directory = os.listdir(r'C:\image')
+        file = random.choice(all_files_in_directory)
+        doc = open('C:\image' + '/' + file, 'rb')
+        #если нужно подпись к фото
+        #send_random_photo
+        bot.send_photo(message.from_user.id, doc)
+
+
+
+
+        
     
     else:
         bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
 bot.polling()
-
