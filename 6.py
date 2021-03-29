@@ -24,7 +24,7 @@ def drop():
                    """)    
         
 
-def pisechka(message, id_c):
+def p(message, id_c):
 
     conn = sqlite3.connect(r"C:\Users\Megnar\gays\mydatabase.db") # или :memory: чтобы сохранить в RAM
     cursor = conn.cursor()
@@ -50,7 +50,7 @@ def read():
         print(row)   
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
-keyboard1.row('/love', '/fap')
+keyboard1.row('/love', '/photo')
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -59,22 +59,22 @@ def start_message(message):
     
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
-    pisechka(message.text, message.from_user.id)
+    p(message.text, message.from_user.id)
     if message.text.lower() == "/love":
-        bot.send_message(message.from_user.id, "для Ромочки:3")
+        bot.send_message(message.from_user.id, "отправить стикер")
         bot.send_sticker(message.from_user.id, "CAACAgIAAxkBAAMMXizHKNJoLY4oHk1wn2A9q9JSpUgAAgEAA4rWmzhPSMHTaNLd5xgE")
-    elif message.text == "/fap":
+    elif message.text == "/photo":
         keyboard2 = telebot.types.ReplyKeyboardMarkup()
-        url_button = telebot.types.InlineKeyboardButton(text = 'чисто подрунькать', url = "https://yandex.by")
+        url_button = telebot.types.InlineKeyboardButton(text = 'фото', url = "https://yandex.by")
         keyboard2.add(url_button)
         bot.send_message(message.chat.id, 'Ну нихуя себе', reply_markup=keyboard2)
         #bot.send_message(message.from_user.id, "Напиши /love")
     elif message.text == "/help":
         bot.send_message(message.from_user.id, """Есть несколько функций например
-                                                /fap
+                                                /photo
                                                 /love""")
 
-    elif message.text == "чисто подрунькать":
+    elif message.text == "отправить":
         #bot.send_photo(message.from_user.id, open(r'C:\Users\Megnar\image\cTgcVxfa8aY.jpg', 'rb'));
         all_files_in_directory = os.listdir(r'C:\image')
         file = random.choice(all_files_in_directory)
